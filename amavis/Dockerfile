@@ -36,4 +36,4 @@ RUN chmod 755 /boot /boot.d/*
 ENV AMAVIS=true
 
 EXPOSE 10024
-CMD ./boot; clamd; amavisd-new; rsyslogd -n
+CMD ./boot; freshclam && /etc/init.d/clamav-freshclam start && /etc/init.d/clamav-daemon start ; amavisd-new; rsyslogd -n
