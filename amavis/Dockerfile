@@ -36,4 +36,4 @@ RUN chmod 755 /boot /boot.d/*
 ENV AMAVIS=true
 
 EXPOSE 10024
-CMD ./boot; amavisd-new; rsyslogd -n
+CMD ./boot; clamd; amavisd-new; rsyslogd -n
