@@ -12,7 +12,7 @@ RUN apt-get update && apt-get install -y \
     libmail-spf-perl \
     pyzor \
     razor \
-    arj bzip2 cabextract cpio file gzip lhasa nomarch pax rar unrar unzip zip zoo \
+    arj bzip2 cabextract cpio file gzip lhasa nomarch pax unrar-free unzip zip zoo p7zip-full xzdec ripole rpm2cpio \
     jq && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
