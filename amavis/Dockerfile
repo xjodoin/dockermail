@@ -1,21 +1,23 @@
-FROM ubuntu:15.10
+FROM ubuntu:16.04
 
 ENV DEBIAN_FRONTEND noninteractive
-RUN locale-gen en_GB en_GB.UTF-8 && dpkg-reconfigure locales
 
 # Prerequisites
-RUN echo "#!/bin/sh\nexit 0" > /usr/sbin/policy-rc.d && \
-    apt-get update && apt-get install -y \
+RUN apt-get update && apt-get install -y \
     rsyslog \
     amavisd-new \
     spamassassin \
+    clamav-daemon \
     libnet-dns-perl \
     libmail-spf-perl \
     pyzor \
     razor \
+    arj bzip2 cabextract cpio file gzip lhasa nomarch pax rar unrar unzip zip zoo \
     jq && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+RUN adduser clamav amavis && adduser amavis clamav
 
 # Set up razor and pyzor
 RUN su - amavis -s /bin/bash && razor-admin -create && razor-admin -register && pyzor discover
